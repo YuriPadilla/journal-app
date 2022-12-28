@@ -1,13 +1,14 @@
-export default function Form ({children, submitText}) {
-    return (
-        <form className="App-main-form">
-            {children}
+import { useState } from 'react';
 
+export default function Form ({onSubmit}) {
+
+    return (
+        <form onSubmit={onSubmit} className="App-main-form">
             <label htmlFor="inputName">Motto</label>
             <input 
                 type="text" 
-                name="inputName" 
-                id="input-name"
+                name="inputMotto" 
+                id="input-motto"
                 placeholder="Motto" 
                 required 
             />
@@ -21,7 +22,7 @@ export default function Form ({children, submitText}) {
                 placeholder="Your notes" 
                 required 
             ></textarea>
-            <button type="submit">{submitText}</button>
+            <button type="submit">Create</button>
         </form>
     );
 }
