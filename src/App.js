@@ -16,16 +16,21 @@ export default function App() {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData)
 
-    setNotes([{id: uid(), motto: data.inputMotto, textNotes: data.inputNotes}, ...notes]);
-    console.log(notes);
-}
+    setNotes([{id: uid(), motto: data.inputMotto, textNotes: data.inputNotes, isFavorite: false}, ...notes]);
+  }
+
+  function handleFavorite(id) {
+    setNotes(notes.map((note) => {
+      return (note.id === id ? {...note, isFavorite: !note.isFavorite} : {...note});
+    }));
+  }
 
   return (
     <>
       <Header>JOURNAL</Header>
       <main>
         <Form onSubmit={handleSubmit}></Form>
-        <ShowedNotes notes={notes}></ShowedNotes>
+        <ShowedNotes notes={notes} onFavorite={handleFavorite}/>
       </main>
       <Footer>Journal App - 2023</Footer>
     </>
