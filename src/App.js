@@ -17,6 +17,9 @@ export default function App() {
     const data = Object.fromEntries(formData)
 
     setNotes([{id: uid(), motto: data.inputMotto, textNotes: data.inputNotes, isFavorite: false}, ...notes]);
+
+    event.target.reset();
+    event.target.elements.inputMotto.focus();
   }
 
   function handleFavorite(id) {
