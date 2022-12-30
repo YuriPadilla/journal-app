@@ -17,9 +17,18 @@ export default function App() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData)
+    const data = Object.fromEntries(formData);
 
-    setNotes([{id: uid(), motto: data.inputMotto, textNotes: data.inputNotes, isFavorite: false}, ...notes]);
+    const currentDate = new Date().toLocaleDateString("de-DE", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    console.log(currentDate);
+
+    setNotes([{id: uid(), date: currentDate, motto: data.inputMotto, textNotes: data.inputNotes, isFavorite: false}, ...notes]);
 
     event.target.reset();
     event.target.elements.inputMotto.focus();
