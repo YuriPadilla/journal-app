@@ -1,7 +1,6 @@
 export default function Filters({onActiveNotes, notes, favoriteNotes}) {
     return (
         <section>
-  
             <button 
                 onClick={() => {
                     onActiveNotes("All Notes");
@@ -17,7 +16,6 @@ export default function Filters({onActiveNotes, notes, favoriteNotes}) {
             >
                 Favorite Notes <span>{favoriteNotes.length}</span>
             </button>
-  
         </section>
     );
 }
