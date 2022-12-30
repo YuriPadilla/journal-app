@@ -6,11 +6,11 @@ export default function ShowedNotes({notes, onFavorite}) {
             <ul>
                 {notes.map(({id, motto, textNotes, isFavorite}) => {
                     return (
-                        <div key={id}>
+                        <article key={id}>
                             <h2>{motto}</h2>
                             <p>{textNotes}</p>
                             <ButtonFavorite isFavorite={isFavorite} onFavorite={onFavorite} id={id}/>
-                        </div>
+                        </article>
                     );
                 })}
             </ul>
