@@ -6,9 +6,12 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Form from "./components/Form";
 import ShowedNotes from "./components/ShowedNotes";
+import Filters from "./components/Filters"
 
 export default function App() {
   const [notes, setNotes] = useState([]);
+  const favoriteNotes = notes.filter((note) => note.isFavorite === true);
+  const [activeNotes, setActiveNotes] = useState("All Notes");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -22,6 +25,10 @@ export default function App() {
     event.target.elements.inputMotto.focus();
   }
 
+  function handleActiveNotes(notesToShow = "All Notes") {
+    setActiveNotes(notesToShow);
+  }
+
   function handleFavorite(id) {
     setNotes(notes.map((note) => {
       return (note.id === id ? {...note, isFavorite: !note.isFavorite} : {...note});
@@ -33,7 +40,8 @@ export default function App() {
       <Header>JOURNAL</Header>
       <main>
         <Form onSubmit={handleSubmit}></Form>
-        <ShowedNotes notes={notes} onFavorite={handleFavorite}/>
+        <Filters onActiveNotes= {handleActiveNotes} notes={notes} favoriteNotes={favoriteNotes}/>
+        <ShowedNotes notes={activeNotes === "All Notes" ? notes : favoriteNotes} onFavorite={handleFavorite}/>
       </main>
       <Footer>Journal App - 2023</Footer>
     </>
